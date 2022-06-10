@@ -459,6 +459,6 @@ def find_child(xml, tag):
     :param tag: The tag.
     :return: The child.
     """
-    for child in xml.getchildren():
+    for child in list(xml):
         if(child.tag == tag):
             return child
