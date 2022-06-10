@@ -165,7 +165,8 @@ def convert_invoice_line(invoice):
     :return:
     """
     # Find invoice line.
-    invoice_line = find_child(invoice, '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}InvoiceLine')
+    # invoice_line = find_child(invoice, '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}InvoiceLine')
+    invoice_line = invoice.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}InvoiceLine')
     # Find item child.
     item = invoice_line.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}Item')
     # Remove item child.
