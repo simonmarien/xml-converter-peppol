@@ -99,7 +99,6 @@ def convert_payment_means(invoice):
     :param invoice:
     :return:
     """
-    # payment_means = find_child(invoice, '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}PaymentMeans')
     payment_means = invoice.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}PaymentMeans')
     # Find payment means code child.
     payment_means_code = payment_means.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2}PaymentMeansCode')
@@ -131,7 +130,6 @@ def convert_tax_total(invoice):
     :param invoice:
     :return:
     """
-    #tax_total = find_child(invoice, '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}TaxTotal')
     # Find tax total child
     tax_total = invoice.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}TaxTotal')
     # Find tax subtotal child.
@@ -165,7 +163,6 @@ def convert_invoice_line(invoice):
     :return:
     """
     # Find invoice line.
-    # invoice_line = find_child(invoice, '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}InvoiceLine')
     invoice_line = invoice.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}InvoiceLine')
     # Find item child.
     item = invoice_line.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}Item')
@@ -454,15 +451,3 @@ def convert_delivery(xml):
     delivery_party = delivery.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}DeliveryParty')
     change_identification_code_list_id(delivery_party)
     return xml
-
-
-def find_child(xml, tag):
-    """
-    Find child with tag.
-    :param xml: The invoice xml in elementtree.
-    :param tag: The tag.
-    :return: The child.
-    """
-    for child in list(xml):
-        if(child.tag == tag):
-            return child
