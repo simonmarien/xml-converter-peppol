@@ -424,7 +424,7 @@ def add_party_legal_entity_with_endpointid(xml, endpointId):
     partylegalentity.append(registrationname)
     partylegalentity.append(companyid)
     # Add partylegalentity as one to last child to party.
-    xml.insert(len(xml.getchildren())-1, partylegalentity)
+    xml.insert(len(xml)-1, partylegalentity)
     return xml
 
 
