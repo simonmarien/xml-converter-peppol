@@ -99,7 +99,8 @@ def convert_payment_means(invoice):
     :param invoice:
     :return:
     """
-    payment_means = find_child(invoice, '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}PaymentMeans')
+    # payment_means = find_child(invoice, '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}PaymentMeans')
+    payment_means = invoice.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}PaymentMeans')
     # Find payment means code child.
     payment_means_code = payment_means.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2}PaymentMeansCode')
     # Change listid of payment means code.
@@ -130,7 +131,9 @@ def convert_tax_total(invoice):
     :param invoice:
     :return:
     """
-    tax_total = find_child(invoice, '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}TaxTotal')
+    #tax_total = find_child(invoice, '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}TaxTotal')
+    # Find tax total child
+    tax_total = invoice.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}TaxTotal')
     # Find tax subtotal child.
     tax_subtotal = tax_total.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}TaxSubtotal')
     # Remove percent child from tax_subtotal.
