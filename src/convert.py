@@ -200,7 +200,7 @@ def convert_invoice_line(invoice):
     # Create new classified tax category child.
     classified_tax_category = ET.SubElement(item, '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}ClassifiedTaxCategory')
     # Add all childs from tax_category to item.
-    for child in tax_category.getchildren():
+    for child in tax_category:
         classified_tax_category.append(child)
     # Remove Tax total child.
     invoice_line.remove(tax_total)
