@@ -18,7 +18,7 @@ def convert_xml_to_peppol(xml, kbo_number):
     return xml
 
 
-xml = read_xml("UBL-Invoice-2.1 (11).xml")
+xml = read_xml("UBL-Invoice-2.1 (5).xml")
 create_invoice_elementtree(xml, "0478693713")
 # Write the XML to a file
 write_xml("test.xml",xml)

@@ -85,6 +85,7 @@ def convert_customer_party(invoice, kbo_number):
     customer_party = invoice.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}AccountingCustomerParty')
     # Find party child.
     party = find_party(customer_party)
+    kbo_number = find_kbo_number(party)
     party = add_endpoint_id(party, kbo_number)
     party = change_identification_code_list_id(party)
     party = remove_scheme_id_of_id(party)
@@ -451,3 +452,18 @@ def convert_delivery(xml):
     delivery_party = delivery.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}DeliveryParty')
     change_identification_code_list_id(delivery_party)
     return xml
+
+
+def find_kbo_number(xml):
+    """
+    Find kbo number.
+    :param xml: The invoice xml in elementtree.
+    :return: The elementtree.
+    """
+    # Find partytaxscheme.
+    partytaxscheme = xml.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}PartyTaxScheme')
+    if partytaxscheme is None:
+        return '  '
+    # Find child with tag companyid.
+    companyid = partytaxscheme.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2}CompanyID')
+    return companyid.text
