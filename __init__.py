@@ -38,7 +38,7 @@ def upload_file():
     with open("converted.xml", "wb") as f:
         f.write(converted_file)
     # Return the converted xml
-    return send_file('src/converted.xml', mimetype='text/xml', download_name='converted.xml', as_attachment=True)
+    return send_file('converted.xml', mimetype='text/xml', download_name='converted.xml', as_attachment=True)
 
 
 # If we're running in stand alone mode, run the application
