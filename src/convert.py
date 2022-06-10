@@ -1,3 +1,4 @@
+import re
 import xml.etree.ElementTree as ET
 
 
@@ -466,4 +467,8 @@ def find_kbo_number(xml):
         return '  '
     # Find child with tag companyid.
     companyid = partytaxscheme.find('.//{urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2}CompanyID')
-    return companyid.text
+    kbo = companyid.text
+    # Remove all non-digits.
+    kbo = re.sub('\D', '', kbo)
+    print(kbo)
+    return kbo
